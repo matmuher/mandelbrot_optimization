@@ -1,6 +1,6 @@
 # Mandelbrot's set optimisation with intrinsics
 
-* Intrincics instruction set: *AVX & AVX2*
+* Intrincics instruction set: *AVX & AVX2* ([mirror for Russia](https://www.laruence.com/sse/))
 * Graphic library: [*raylib*](raylib.com) 
 * OS: *Window 10*
 
