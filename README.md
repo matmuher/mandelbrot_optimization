@@ -2,6 +2,7 @@
 
 * Intrincics instruction set: *AVX & AVX2*
 * Graphic library: [*raylib*](raylib.com) 
+* OS: *Window 10*
 
 The Mandelbrot set is the set of complex numbers for which the function [f_c(z)=z^2 + c] does not diverge to infinity when iterated from z=0
 
