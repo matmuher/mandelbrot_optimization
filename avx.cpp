@@ -91,39 +91,27 @@ int main ()
 void draw_mondelbrot_avx (const int screenWidth, const int screenHeight,
                           float scale_factor, float shift_x, float shift_y)
 	{
-	size_t RUN_NUM = 10;
+    // Draw pixels that belong Mondelbrot's set
 
-	// clock_t t = clock(), t0;
-	// float iter_time = 0;
+    // Count 8 points at once
+    for (int y = 0; y < screenHeight; y++)
+        {
+        for (int x = 0; x < screenWidth; x = x + AVX_SIZE)
+            {
+            Color pixel_colors[AVX_SIZE] = {};
 
-	for (int run_id = 0; run_id < RUN_NUM; run_id++)
-		{
-		// Draw pixels that belong Mondelbrot's set
+            // Transform coords from left-conored coord system to centered one
+            float scaled_x = (x - screenWidth / 2) * scale_factor + shift_x;
+            float scaled_y = (y - screenHeight / 2) * scale_factor + shift_y;
 
-        // Count 8 points at once
-		for (int y = 0; y < screenHeight; y++)
-			{
-			for (int x = 0; x < screenWidth; x = x + AVX_SIZE)
-				{
-				Color pixel_colors[AVX_SIZE] = {};
+            mondelbrot_point_color_avx (pixel_colors, scaled_x, scaled_y, scale_factor);
 
-				// Transform coords from left-conored coord system to centered one
-				float scaled_x = (x - screenWidth / 2) * scale_factor + shift_x;
-                float scaled_y = (y - screenHeight / 2) * scale_factor + shift_y;
-
-				mondelbrot_point_color_avx (pixel_colors, scaled_x, scaled_y, scale_factor);
-
-				for (size_t pixel_shift = 0; pixel_shift < AVX_SIZE; pixel_shift++)
-                    {
-                    DrawPixel(x + pixel_shift, y, pixel_colors[pixel_shift]);
-                    }
-				}
-			}
-		}
-	// t = clock() - t;
-	// iter_time = (CLOCKS_PER_SEC * RUN_NUM) / (float) t ;
-
-	// printf("FPS: %f\n", iter_time);
+            for (size_t pixel_shift = 0; pixel_shift < AVX_SIZE; pixel_shift++)
+                {
+                DrawPixel(x + pixel_shift, y, pixel_colors[pixel_shift]);
+                }
+            }
+        }
 	}
 
 
