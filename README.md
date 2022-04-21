@@ -14,7 +14,7 @@ I used raylib library to visualise it, thus i got:
 
 ![Without optimization FPS oscillates about 10 FPS](no_avx_mandelbrot.PNG)
 
-**With AVX intinsics optimization FPS oscillates about 30 FPS**:
+**With AVX intinsics optimization FPS oscillates about 20 FPS**:
 
 ![With intinsics optimization FPS oscillates about 20 FPS](avx_mandelbrot.png)
 
