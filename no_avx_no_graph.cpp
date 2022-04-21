@@ -19,7 +19,7 @@ int main ()
     clock_t t = clock();
 	float fps = 0;
 
-    size_t RUN_NUM = 100;
+    size_t RUN_NUM = 10;
 
 	for (int run_id = 0; run_id < RUN_NUM; run_id++)
 		{
